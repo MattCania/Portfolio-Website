@@ -21,7 +21,7 @@ export default function Header({ scrollToSection, navigation, isInView }) {
 					${isWhiteText ? 'text-white' : 'text-black'}
 					${isWhiteText ? 'hover:bg-white hover:text-zinc-950' : 'hover:bg-zinc-950 hover:text-white'}`}
 				style={{ transition: 'color 500ms ease, background-color 500ms ease' }}
-				href="/Matthew Cania Resume.pdf"
+				href="Portfolio-Website/Matthew Cania Resume.pdf"
 				download="Matthew Cania Resume.pdf"
 			>
 				Resume

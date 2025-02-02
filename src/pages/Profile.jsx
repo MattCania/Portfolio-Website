@@ -11,6 +11,19 @@ import SkillChart from '../components/SkillChart'
 export default function ProfilePage() {
 	const [isHover, setIsHover] = useState(false)
 	const [customColor, setCustomColor] = useState(null)
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
+	useEffect(() => {
+		const handleResize = () => {
+		  setIsMobile(window.innerWidth <= 1024);
+		};
+	
+		window.addEventListener('resize', handleResize);
+		
+		return () => {
+		  window.removeEventListener('resize', handleResize);
+		};
+	  }, []);
 
 	const [isInView, setIsInView] = useState({
 		welcomeContent: false,
@@ -93,7 +106,7 @@ export default function ProfilePage() {
 		<section
 			className='flex flex-col justify-start items-center w-full min-h-screen bg-zinc-950 overflow-x-hidden scroll-smooth'
 		>
-			<MouseEffect circleCount={100} circlePx={5} lerp={isHover ? 0.5 : 0.75} isInView={isInView} color={customColor} />
+			<MouseEffect circleCount={isMobile ? 50 : 100} circlePx={isMobile ? 2 : 5} lerp={isHover ? 0.5 : 0.75} isInView={isInView} color={customColor} />
 			<Header scrollToSection={scrollToSection} navigation={navigation} isInView={isInView} />
 			<div
 				id='welcome'
