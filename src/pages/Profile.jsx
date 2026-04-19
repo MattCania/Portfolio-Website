@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ProfileImg from '../assets/profileImg.png';
 import PandoraImg1 from '../assets/projects/pandora/PandoraSS1.png'
-import GitFit1 from '../assets/projects/gitFit/Gitfit1.png'
+import Nutribin from '../assets/projects/nutribin/home.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faGithub, faItchIo, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faAngleDoubleRight, faForward, faPhone, faWindowMaximize, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleRight, faForward } from '@fortawesome/free-solid-svg-icons';
 import Header from '../partials/Header';
 import MouseEffect from './MouseEffect';
 import SkillChart from '../components/SkillChart'
@@ -121,7 +121,7 @@ export default function ProfilePage() {
 					<h1
 						className={`section text-white font-black text-xl md:text-2xl lg:text-5xl ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
-						Matthew Cania
+						Matthew Gabriel Cania
 					</h1>
 					<p
 						className={`section flex justify-start items-center gap-2 w-full h-auto text-white text-md lg:text-2xl border-b-1 border-white ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} font-semibold transition-all duration-[3000ms]`}
@@ -167,7 +167,7 @@ export default function ProfilePage() {
 					<h1
 						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
-						I create websites
+						I want to create websites
 					</h1>
 
 					<h1
@@ -264,14 +264,14 @@ export default function ProfilePage() {
 								<h1
 									className='text-[clamp(1.5rem,5vh,3rem)] text-white font-medium'
 								>
-									GitFit: Goal Based Management Tool
+									NutriBin: Excess Food Composting and Fertilizer Monitoring System
 								</h1>
 								<p
 									className='flex flex-col w-full text-white text-[clamp(1rem,2vh,2rem)] font-thin'
 								>
-									A health and career management app inspired by GitHub, allowing users to establish health, career, and talent based goals health manager, scheduling system, and progress level of productivity. Promoting work productivity while ensuring your health
+									We developed a smart compost system that automatically processed biodegradable waste while monitoring and controlling key conditions (NPK, pH, temperature, moisture, and gases) to produce safe, high-quality fertilizer.
 									<b>
-										Made with React JS and TailwindCSS framework along with NodeJS, Sequelize, and PostgreSQL.
+										Made using ReactJS and TailwindCSS and the backend framework using NestJS, we used Flutter Dart for Mobile Integration and launched via Railway.
 									</b>
 								</p>
 							</div>
@@ -282,21 +282,21 @@ export default function ProfilePage() {
 
 							<h1
 							
-								className='flex justify-center items-center text-5xl w-full h-60 md:h-72 rounded-2xl relative text-teal-300 border-1 border-teal-300 italic font-medium bg-transparent transition-all duration-500'
+								className='flex justify-center items-center text-5xl w-full h-60 md:h-80 rounded-2xl relative text-yellow-50 border-1 border-yellow-50 italic font-medium bg-transparent transition-all duration-500'
 								>
-								GitFit
+								Nutribin
 							</h1>
 
 							<a
 								className='w-full md:w-1/2 h-60 md:h-full absolute'
-								href=""
+								href="https://nutribin.up.railway.app"
 								>
 
 								<img
 									className='w-full h-full rounded-xl hover:opacity-0 transition-all duration-500'
 									onMouseOver={() => setCustomColor('#00d5be')}
 									onMouseLeave={() => setCustomColor(null)}
-									src={GitFit1}
+									src={Nutribin}
 									alt=""
 									/>
 							</a>
@@ -307,63 +307,55 @@ export default function ProfilePage() {
 				</div>
 			</div>
 
-			<div
-				id='skills'
-				className={`flex justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white p-2 lg:p-0`}
-				style={{
-					height: 'auto',
-					minHeight: '100vh'
-				}}
-			>
 				<div
-					id='skillsContent'
-					className={`section flex flex-col lg:flex-row justify-center items-center gap-4 h-full w-full lg:w-3/4 z-1 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+					id='skills'
+					className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white p-2 lg:p-0`}
+					style={{
+						height: 'auto',
+						minHeight: '100vh'
+					}}
 				>
 					<div
 						id='skillsContent'
-						className={`section flex flex-col justify-center items-center w-5/6 lg:w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+						className={`section flex flex-col lg:flex-row justify-center items-center gap-4 h-full w-full lg:w-3/4 z-1 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 					>
-						<img
-							className='w-1/2 md:w-1/4 lg:w-3/4 rounded-full z-1'
-							src={ProfileImg}
-							alt=""
-						/>
-
-						<h1
-							className='w-full text-center items-center justify-center text-4xl font-semibold text-black z-1 my-4'
+						<div
+							id='skillsContent'
+							className={`section flex flex-col justify-center items-center w-5/6 lg:w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 						>
-							Matthew Cania
-						</h1>
-						<ul
-							className='flex flex-col justify-start items-start w-full font-medium z-1'
-						>
-							<li>matthewgab24@gmail.com</li>
-							<li>11647 ph.6 Purok II 6 Area D Brgy.178 Camarin Caloocan City</li>
-							<li>
-								<a
-									href="https://github.com/MattCania"
-									className='hover:underline hover:bg-black hover:text-white rounded-sm transition-all duration-500'
-									onMouseOver={() => setIsHover(true)}
-									onMouseLeave={() => setIsHover(false)}
-								>
-									https://github.com/MattCania
-								</a>
-							</li>
-						</ul>
+							<img
+								className='w-1/2 md:w-1/4 lg:w-3/4 rounded-full z-1'
+								draggable={false}
+								
+								src={ProfileImg}
+								alt=""
+							/>
 
+							<h1
+								className='w-full text-center items-center justify-center text-3xl font-semibold text-black z-1 my-2'
+							>
+								Matthew Gabriel M Cania
+							</h1>
+							<h1
+								className='w-full text-justify items-center justify-center text-lg font-normal text-black z-1 '
+							>
+								Motivated IT student focused on full-stack development and database systems, seeking an internship to contribute to real-world software projects while further developing practical engineering skills.
+							</h1>
+							
+
+						</div>
+
+						<div
+							id='skillsContent'
+							className={`section flex flex-col justify-center items-start gap-2 h-3/4 w-full lg:w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+						>
+							<SkillChart />
+
+						</div>
 					</div>
 
-					<div
-						id='skillsContent'
-						className={`section flex flex-col justify-center items-start gap-2 h-3/4 w-full lg:w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
-					>
-						<SkillChart />
-
-					</div>
 				</div>
 
-			</div>
-
-		</section>
+			</section>
 	);
 }
