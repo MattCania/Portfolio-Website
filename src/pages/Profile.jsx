@@ -27,7 +27,7 @@ export default function ProfilePage() {
 
 	const [isInView, setIsInView] = useState({
 		welcomeContent: false,
-		aboutContent: false,
+		missionContent: false,
 		projectsContent: false,
 		skillsContent: false,
 	});
@@ -91,7 +91,7 @@ export default function ProfilePage() {
 
 	const navigation = [
 		{
-			label: 'About', id: 'about'
+			label: 'Mission', id: 'mission'
 		},
 		{
 			label: 'Projects', id: 'projects'
@@ -129,7 +129,7 @@ export default function ProfilePage() {
 						Full Stack Devloper
 						<button
 							className='flex justify-center items-center w-6 h-6 cursor-pointer hover:text-teal-400 transition-all duration-300 outline-none'
-							onClick={() => scrollToSection('about')}
+							onClick={() => scrollToSection('mission')}
 							onMouseOver={() => setIsHover(true)}
 							onMouseLeave={() => setIsHover(false)}
 						>
@@ -157,34 +157,34 @@ export default function ProfilePage() {
 			</div>
 
 			<div
-				id='about'
+				id='mission'
 				className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white`}
 			>
 				<div
-					id='aboutContent'
-					className={`section flex flex-col justify-center items-start w-5/6 lg:w-1/2 ${isInView.aboutContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+					id='missionContent'
+					className={`section flex flex-col justify-center items-start w-5/6 lg:w-1/2 ${isInView.missionContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 				>
 					<h1
-						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[2000ms]`}
+						className={`section ${isInView.missionContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
 						I want to create websites
 					</h1>
 
 					<h1
-						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[3000ms]`}
+						className={`section ${isInView.missionContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[3000ms]`}
 					>
 						That solves
 					</h1>
 					<h1
-						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[4000ms]`}
+						className={`section ${isInView.missionContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[4000ms]`}
 					>
 						Real world problems
 					</h1>
 					<button
-						className={`section outline-none flex text-center justify-center items-center my-2 ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-2xl md:text-3xl lg:text-4xl font-semibold rounded-xl hover:bg-zinc-950 hover:text-white cursor-pointer`}
+						className={`section outline-none flex text-center justify-center items-center my-2 ${isInView.missionContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-2xl md:text-3xl lg:text-4xl font-semibold rounded-xl hover:bg-zinc-950 hover:text-white cursor-pointer`}
 						style={{
 							transition: 'transform 4500ms ease, opacity 4500ms ease, color 1000ms ease, background-color 1000ms ease',
-							transform: isInView.aboutContent ? 'translateY(0)' : 'translateY(-20px)'
+							transform: isInView.missionContent ? 'translateY(0)' : 'translateY(-20px)'
 						}}
 						onClick={() => scrollToSection('projects')}
 						onMouseOver={() => setIsHover(true)}

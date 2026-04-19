@@ -22,7 +22,7 @@ export default function Header({ scrollToSection, navigation, isInView }) {
     ${isWhiteText ? "text-white" : "text-black"}
     ${isWhiteText ? "hover:bg-white hover:text-zinc-950" : "hover:bg-zinc-950 hover:text-white"}`}
         style={{ transition: "color 500ms ease, background-color 500ms ease" }}
-        href={"http://localhost:3173/Portfolio-Website/Matthew_Gabriel_M_Cania-Resume.pdf"}
+        href={"https://mattcania.github.io/Portfolio-Website/Matthew_Gabriel_M_Cania-Resume.pdf"}
         download
       >
         Resume

@@ -101,7 +101,7 @@ const skills = [
   },
 ];
 
-function SkillCard({ name, level, tags, color, bg, textColor, animate }) {
+function SkillCard({ name, level, tags, color, bg, textColor }) {
   return (
     <div
       style={{
@@ -126,46 +126,15 @@ function SkillCard({ name, level, tags, color, bg, textColor, animate }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: "8px",
+          marginBottom: "10px",
         }}
       >
         <span style={{ fontSize: "13px", fontWeight: 600, color: "#111" }}>
           {name}
         </span>
-        <span
-          style={{
-            fontSize: "11px",
-            fontWeight: 600,
-            color: textColor,
-            background: bg,
-            borderRadius: "999px",
-            padding: "1px 7px",
-            flexShrink: 0,
-          }}
-        >
-          {level}%
-        </span>
       </div>
 
-      <div
-        style={{
-          height: "3px",
-          background: "#f0f0f0",
-          borderRadius: "999px",
-          overflow: "hidden",
-          marginBottom: "10px",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: animate ? `${level}%` : "0%",
-            background: color,
-            borderRadius: "999px",
-            transition: "width 1.1s cubic-bezier(0.4,0,0.2,1)",
-          }}
-        />
-      </div>
+      {/* Progress bar div removed */}
 
       <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
         {tags.map((tag) => (
