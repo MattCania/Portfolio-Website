@@ -9,12 +9,10 @@ const skills = [
     items: [
       {
         name: "Full-Stack Development",
-        level: 95,
         tags: ["React", "Next.js", "Svelte", "Express", "NestJS"],
       },
       {
         name: "Frontend Development",
-        level: 90,
         tags: ["HTML", "CSS", "Modern JS Frameworks"],
       },
     ],
@@ -27,12 +25,10 @@ const skills = [
     items: [
       {
         name: "Backend Development",
-        level: 85,
         tags: ["REST APIs", "Express", "Fastify"],
       },
       {
         name: "API Integration",
-        level: 88,
         tags: ["REST", "Third-party APIs"],
       },
     ],
@@ -45,12 +41,10 @@ const skills = [
     items: [
       {
         name: "Database Management",
-        level: 82,
         tags: ["Supabase", "Firebase", "MySQL", "PostgreSQL"],
       },
       {
         name: "Data & Spreadsheets",
-        level: 78,
         tags: ["Excel", "Office Suite"],
       },
     ],
@@ -63,12 +57,10 @@ const skills = [
     items: [
       {
         name: "Programming Languages",
-        level: 85,
         tags: ["JavaScript", "Kotlin", "Flutter", "Rust", "Go"],
       },
       {
         name: "OOP",
-        level: 87,
         tags: ["OOP Principles", "Design Patterns"],
       },
     ],
@@ -81,7 +73,6 @@ const skills = [
     items: [
       {
         name: "Computer Networking",
-        level: 75,
         tags: ["TCP/IP", "HTTP/S", "DNS"],
       },
     ],
@@ -94,104 +85,57 @@ const skills = [
     items: [
       {
         name: "Problem-Solving",
-        level: 92,
         tags: ["Critical Thinking", "Debugging", "System Design"],
       },
     ],
   },
 ];
 
-function SkillCard({ name, level, tags, color, bg, textColor }) {
+function CategoryGroup({ group, index, animate }) {
   return (
     <div
+      className="skill-wrap"
       style={{
-        background: "white",
-        border: "0.5px solid rgba(0,0,0,0.08)",
-        borderRadius: "12px",
-        padding: "14px 16px",
-        transition: "border-color 0.2s, box-shadow 0.2s",
-        cursor: "default",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)";
-        e.currentTarget.style.boxShadow = "0 2px 10px rgba(0,0,0,0.06)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(0,0,0,0.08)";
-        e.currentTarget.style.boxShadow = "none";
+        opacity: animate ? 1 : 0,
+        transform: animate ? "translateY(0)" : "translateY(24px)",
+        transitionDelay: `${index * 100}ms`,
       }}
     >
       <div
+        className="skill-tile"
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "10px",
+          "--accent": group.color,
+          "--accent-bg": group.bg,
+          "--accent-text": group.textColor,
         }}
       >
-        <span style={{ fontSize: "13px", fontWeight: 600, color: "#111" }}>
-          {name}
+        <span className="skill-ghost" aria-hidden="true">
+          {String(index + 1).padStart(2, "0")}
         </span>
+
+        <div className="skill-content">
+          <p className="skill-index">{String(index + 1).padStart(2, "0")}</p>
+          <h3 className="skill-title">{group.category}</h3>
+
+          <div className="skill-items">
+            {group.items.map((skill) => (
+              <div key={skill.name} className="skill-item">
+                <p className="skill-name">
+                  <span className="skill-dot" />
+                  {skill.name}
+                </p>
+                <div className="skill-tags">
+                  {skill.tags.map((tag) => (
+                    <span key={tag} className="skill-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-
-      {/* Progress bar div removed */}
-
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            style={{
-              fontSize: "10px",
-              padding: "2px 7px",
-              borderRadius: "999px",
-              background: bg,
-              color: textColor,
-              fontWeight: 500,
-            }}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function CategoryGroup({ group, animate }) {
-  return (
-    <div
-      style={{
-		background: "rgba(250, 250, 250, 0.25)",
-        border: "0.5px solid rgba(0,0,0,0.06)",
-        borderRadius: "16px",
-        padding: "16px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-      }}
-    >
-      <p
-        style={{
-          fontSize: "10px",
-          fontWeight: 700,
-          letterSpacing: "0.09em",
-          textTransform: "uppercase",
-          color: group.color,
-          margin: 0,
-        }}
-      >
-        {group.category}
-      </p>
-      {group.items.map((skill) => (
-        <SkillCard
-          key={skill.name}
-          {...skill}
-          color={group.color}
-          bg={group.bg}
-          textColor={group.textColor}
-          animate={animate}
-        />
-      ))}
     </div>
   );
 }
@@ -208,7 +152,7 @@ export default function SkillChart() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -217,25 +161,191 @@ export default function SkillChart() {
   return (
     <div
       ref={ref}
-      className="skills-grid"
       style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-        gap: "12px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
         width: "100%",
       }}
     >
       <style>{`
-        @media (max-width: 1024px) {
-          .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px;
+          width: 100%;
         }
-        @media (max-width: 560px) {
-          .skills-grid { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+        @media (max-width: 640px) {
+          .skills-grid { grid-template-columns: minmax(0, 1fr); }
+        }
+
+        .skills-eyebrow {
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 12px;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #0d9488;
+          margin: 0;
+        }
+        .skills-heading {
+          font-size: clamp(2.25rem, 5vw, 4rem);
+          font-weight: 900;
+          line-height: 1;
+          color: #09090b;
+          margin: 4px 0 0;
+        }
+        .skills-heading span {
+          color: transparent;
+          -webkit-text-stroke: 2px #0d9488;
+        }
+
+        .skill-wrap {
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .skill-tile {
+          position: relative;
+          overflow: hidden;
+          box-sizing: border-box;
+          height: 100%;
+          padding: 20px;
+          background: #fff;
+          color: #09090b;
+          border: 1.5px solid #09090b;
+          border-radius: 6px;
+          cursor: default;
+          transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .skill-tile::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 4px;
+          width: 28%;
+          background: var(--accent);
+          transition: width 0.6s ease;
+        }
+        .skill-tile:hover {
+          background: #09090b;
+          color: #fff;
+        }
+        .skill-tile:hover::before {
+          width: 100%;
+        }
+
+        .skill-ghost {
+          position: absolute;
+          right: 8px;
+          bottom: -28px;
+          font-size: 120px;
+          font-weight: 900;
+          line-height: 1;
+          color: transparent;
+          -webkit-text-stroke: 1.5px rgba(9, 9, 11, 0.08);
+          pointer-events: none;
+          user-select: none;
+          transition: -webkit-text-stroke-color 0.5s ease;
+        }
+        .skill-tile:hover .skill-ghost {
+          -webkit-text-stroke-color: var(--accent);
+        }
+
+        .skill-content {
+          position: relative;
+          z-index: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+        .skill-index {
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          color: var(--accent);
+          margin: 0;
+        }
+        .skill-title {
+          font-size: 22px;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: 0.02em;
+          margin: 0 0 8px;
+        }
+
+        .skill-items {
+          display: flex;
+          flex-direction: column;
+        }
+        .skill-item {
+          padding: 12px 0;
+          border-top: 1px dashed rgba(9, 9, 11, 0.2);
+          transition: border-color 0.5s ease;
+        }
+        .skill-tile:hover .skill-item {
+          border-top-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-name {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          font-weight: 600;
+          margin: 0 0 8px;
+        }
+        .skill-dot {
+          width: 7px;
+          height: 7px;
+          background: var(--accent);
+          transform: rotate(45deg);
+          flex-shrink: 0;
+        }
+
+        .skill-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        .skill-tag {
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 10px;
+          padding: 3px 9px;
+          border-radius: 999px;
+          border: 1px solid transparent;
+          background: var(--accent-bg);
+          color: var(--accent-text);
+          transition: all 0.3s ease;
+        }
+        .skill-tile:hover .skill-tag {
+          background: transparent;
+          color: #e4e4e7;
+          border-color: #3f3f46;
+        }
+        .skill-tile:hover .skill-tag:hover {
+          background: var(--accent);
+          color: #09090b;
+          border-color: var(--accent);
         }
       `}</style>
-      {skills.map((group) => (
-        <CategoryGroup key={group.category} group={group} animate={animate} />
-      ))}
+
+      <div>
+        <p className="skills-eyebrow">Skills · Toolkit</p>
+        <h1 className="skills-heading">
+          Tools of the <span>Trade</span>
+        </h1>
+      </div>
+
+      <div className="skills-grid">
+        {skills.map((group, index) => (
+          <CategoryGroup
+            key={group.category}
+            group={group}
+            index={index}
+            animate={animate}
+          />
+        ))}
+      </div>
     </div>
   );
 }
